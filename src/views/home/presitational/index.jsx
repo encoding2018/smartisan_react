@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import style from './index.module.styl';
 import {Link} from 'react-router-dom';
-import IScroll from 'iscroll';
+import IScroll from 'iscroll/build/iscroll-probe';
 import imagesLoaded from 'imagesloaded';
-import Floor from '../../../components/home/indexFloor';
+import Floor from '../../../components/home/floor';
 import Poster from '../../../components/home/poster';
 import UpateBar from '../../../components/public/updateBar';
+import footerStyle from '../../../components/public/footer/index.module.styl';
 class Main extends Component{
         constructor(props){
                 super(props);
@@ -13,9 +14,7 @@ class Main extends Component{
                         bannerState: {
                                 curIndex: 0,
                         },
-                        update:{
-                                state:true,
-                        },
+                        update:true,
                         updateMsg:'正在加载...',
                 }
         }
@@ -30,8 +29,7 @@ class Main extends Component{
                                                                         {this.props.data.banner.map((item, i) => (
                                                                                 <li key={i}>
                                                                                         <Link to={item.url}>
-                                                                                                <img src={item.avatar}
-                                                                                                     alt=""/>
+                                                                                                <img src={item.avatar} alt=""/>
                                                                                         </Link>
                                                                                 </li>
                                                                         ))}
@@ -48,9 +46,7 @@ class Main extends Component{
                                                                         {this.props.data.bannerMenu.map((item, i) => (
                                                                                 <li key={i}>
                                                                                         <Link to={item.url}>
-                                                                                                <div><img
-                                                                                                        src={item.avatar}
-                                                                                                        alt=""/></div>
+                                                                                                <div><img src={item.avatar} alt=""/></div>
                                                                                                 <span>{item.name}</span>
                                                                                         </Link>
                                                                                 </li>
@@ -60,12 +56,12 @@ class Main extends Component{
                                                 </div>
                                                 <Floor data={this.props.data.product[0]} template={1} show={6}/>
                                                 <Poster data={this.props.data.poster.top} template={1}/>
-                                                <Floor data={this.props.data.product[1]} template={2} show={6}/>
-                                                <Floor data={this.props.data.product[2]} template={3} show={6}/>
-                                                <Floor data={this.props.data.product[3]} template={2} show={6}/>
-                                                <Floor data={this.props.data.product[4]} template={2} show={6}/>
-                                                <Floor data={this.props.data.product[5]} template={3} show={6}/>
-                                                <Floor data={this.props.data.product[6]} template={2} show={6}/>
+                                                {this.props.data.product[1]&&<Floor data={this.props.data.product[1]} template={2} show={6}/>}
+                                                {this.props.data.product[2]&&<Floor data={this.props.data.product[2]} template={1} show={6}/>}
+                                                {this.props.data.product[3]&&<Floor data={this.props.data.product[3]} template={2} show={6}/>}
+                                                {this.props.data.product[4]&&<Floor data={this.props.data.product[4]} template={2} show={6}/>}
+                                                {this.props.data.product[5]&&<Floor data={this.props.data.product[5]} template={3} show={6}/>}
+                                                {this.props.data.product[6]&&<Floor data={this.props.data.product[6]} template={2} show={6}/>}
                                                 {this.props.data.curId>=8&&<Poster data={this.props.data.poster.bottom} template={2}/>}
                                                 {this.props.data.curId!==8&&<UpateBar msg={this.state.updateMsg}/>}
                                         </div>
@@ -75,20 +71,19 @@ class Main extends Component{
         }
 
         componentDidMount(){
-                this.initBannerIScroll();
-                this.InitContentIScroll();
+                if(this.props.data)this.initBannerIScroll();
+                if(this.props.data)this.InitContentIScroll();
+                this.addActive();
         }
-        componentWillReceiveProps(nextProps){
-                this.initBannerIScroll();
-        }
+
         componentDidUpdate(prevProps, prevState, snapshot){
+                this.initBannerIScroll();
                 this.InitContentIScroll();
         }
+
         initBannerIScroll(){
-                let Box = document.getElementById('bannerIScroll'),
-                        child = document.getElementById('subBannerIScroll');
+                let Box = document.getElementById('bannerIScroll');
                 imagesLoaded(Box, () => {
-                        child.style.width = `${this.props.data.banner.length}00%`;
                         setTimeout(() => {
                                 if(this.bannerScroll) this.bannerScroll.refresh();
                                 else{
@@ -115,28 +110,32 @@ class Main extends Component{
                                 scrollY:true,
                                 mouseWheel: true,
                                 useTransition:false,
+                                bounce:false,
                                 click: true,
-                                tap: true,
+                                probeType:3
                         });
                         let {contentIScoll} = this;
-                        contentIScoll.on('scrollEnd',()=>{ //懒加载
+                        contentIScoll.on('scroll',()=>{
                                 if(this.props.data.curId>=8) return;
                                 if(contentIScoll.y!==0){
-                                        let childHeight = content.children[0].offsetHeight,
-                                                wrapperHeight = contentIScoll.wrapperHeight,
-                                                curY = contentIScoll.y,
-                                                {state}=this.state.update;
-                                        if(childHeight-wrapperHeight+curY<=100&&state){
-                                                this.setState({update:{state:false}}); //进入更新状态
+                                        if(contentIScoll.y-contentIScoll.maxScrollY <= 50&&this.state.update){
+                                                this.setState({update:false}); //进入更新状态
                                                 this.props.update()
                                                         .then(()=>{
-                                                                this.setState({update:{state:true}});//更新状态结束
-                                                                imagesLoaded(content,()=>{contentIScoll.refresh();});
+                                                                imagesLoaded(content,()=>{
+                                                                        contentIScoll.refresh();
+                                                                        this.setState({update:true});   //更新状态结束
+                                                                });
                                                         });
                                         }
                                 }
-                        });
+                        })
                    });
+        }
+        addActive(){
+                setTimeout(()=>{
+                        document.querySelector(`.${footerStyle.btn}:nth-child(1) a`).className=footerStyle.active;
+                },20)
         }
 }
 

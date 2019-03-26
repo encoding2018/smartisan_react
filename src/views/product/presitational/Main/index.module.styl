@@ -1,0 +1,167 @@
+$border = 0.01rem solid rgba(96, 96, 96, 0.2);
+        .subContent
+                background rgb(228, 228, 228)
+                display flex
+                flex-direction column
+                height 100%
+                .title-box
+                        flex-shrink 0
+                        height 1rem
+                        padding 0.2rem
+                        display flex
+                        background rgb(242, 242, 242)
+                        box-shadow 0 0.1rem 0.26rem rgba(0, 0, 0, .12)
+                        position relative
+                        top 0
+                        z-index 1
+
+                        .active
+                                background rgb(176, 176, 176)
+                                color rgb(238, 238, 238)
+
+                        div
+                                flex-grow 1
+                                margin 0
+                                text-align center
+                                line-height 0.6rem
+                                border-top $border
+                                border-bottom $border
+                                border-right $border
+                                font-weight 700
+                                color rgb(96, 96, 96)
+                                font-size 0.3rem
+
+                        div:first-child
+                                border-left $border
+                                border-bottom-left-radius 0.1rem
+                                border-top-left-radius 0.1rem
+
+                        div:last-child
+                                border-bottom-right-radius 0.1rem
+                                border-top-right-radius 0.1rem
+                .IScrollContent
+                        flex-grow 1
+                        overflow hidden
+                        touch-action pan-y
+                        .productContent
+                                flex-grow 1
+                                overflow hidden
+                                padding-bottom 1rem
+                                &>*
+                                        background #fff
+                                .img-box
+                                        width 100%
+                                        padding-top 80%
+                                        margin-bottom 0.2rem
+                                        position relative
+                                        img
+                                                width 80%
+                                                position absolute
+                                                top 50%
+                                                left 50%
+                                                transform translateX(-50%) translateY(-50%)
+                                .message-box
+                                        background-color #fff
+                                        margin-bottom 0.2rem
+
+                                        .message
+                                                padding 0.2rem 0.4rem
+                                                &>*
+                                                        margin-bottom 0.15rem
+                                                .name
+                                                        font-weight 700
+                                                        font-size 0.32rem
+                                                .title
+                                                        font-size 0.26rem
+                                                        color #7f7f7f
+                                                .price
+                                                        font-weight 700
+                                                        color #d44d44
+                                                        font-size 0.3rem
+
+                                .type-select
+                                        font-size 0.25rem
+                                        font-weight 700
+                                        padding 0.3rem 0.4rem
+                                        background #fff
+                                        margin-bottom 0.2rem
+
+                                        .title
+                                                color rgb(153, 153, 153)
+                                                margin-bottom 0.1rem
+
+                                        .type-box
+                                                display flex
+                                                align-items center
+
+                                                & > div > div
+                                                        margin-bottom 0.1rem
+
+                                        .type-box > div:first-child
+                                                flex-grow 1
+
+                                        .type-box > div:last-child
+                                                width 0.16rem
+
+                                                img
+                                                        width 100%
+
+                                        .type-box > div > div > span:first-child
+                                                font-weight normal
+                                                margin-right 0.2rem
+
+                                .details
+                                        background #fff
+
+                .BottomMenu
+                        position fixed
+                        bottom 0
+                        height 1rem
+                        width 100%
+                        display flex
+                        z-index 3
+                        background #fff
+                        padding 0.1rem 0.2rem
+                        box-shadow 0 -11px 27px rgba(0,0,0,.08)
+                        .icon
+                                width 1rem
+                                background-image url('./img/icon_cart.png');
+                                background-position center
+                                background-repeat no-repeat
+                                background-size 55%
+                                position relative
+                                a
+                                        width 100%
+                                        height 100%
+                                        display inline-block
+                                        span
+                                                width 0.3rem
+                                                height 0.3rem
+                                                border-radius 50%
+                                                display block
+                                                position absolute
+                                                text-align center
+                                                font-weight 700
+                                                font-size 0.22rem
+                                                line-height 0.3rem
+                                                color #fff
+                                                right 20%
+                                                top 10%
+                                                background rgb(290, 79, 70)
+                        .addCart
+                                flex-grow 1
+                                background-image  linear-gradient(#fff,#fcfcfc)
+                                border .01rem solid hsla(0,0%,39%,.2)
+                                color #8c8c8c
+                        .buy
+                                flex-grow 1
+                                background-image linear-gradient(#6e98f4,#4b77ee)
+                                color #fff
+                        .btn
+                                font-size 0.3rem
+                                display flex
+                                justify-content center
+                                align-items center
+                                font-weight 700
+                                border-radius 0.1rem
+                                margin 0 0.1rem

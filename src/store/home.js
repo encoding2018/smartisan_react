@@ -1,6 +1,6 @@
 import http from '../utils/http';
 
-const defaultState = { //类似于vue中的state节点
+const defaultState = {
         banner:[],
         bannerMenu:[],
         poster:{},
@@ -14,28 +14,28 @@ const actionTypes = {
         UPDATE:'home/update'
 };
 
-export const homeActions = { //类似于vue 仓库中的 actions节点
+export const homeActions = {
         INIT:()=>(dispatch,getState)=>{
                 if(getState().home.isInit) return;
-                http('/all',)
+                return http('/all',)
                         .then(data=>dispatch({type:actionTypes.INIT,payload:data}))
         },
         UPDATE:(payload)=>(dispatch,getState)=>{
-                let {curId} = getState().home;
-                return http('/update',{cid:getState().home.curId})
+                let curId =payload || getState().home.curId;
+                return http('/update',{cid:curId})
                         .then(data=>{
-                                let previousDate = getState().home.product;
-                                previousDate.push(data[0]);
-                                dispatch({type:actionTypes.INIT,payload:{product:previousDate,curId:curId+1}})
-                        });
-        }
+                                dispatch({type:actionTypes.UPDATE,payload:{data:data[0],state:!!payload}})
+                        })
+        },
 };
 
-export default (state=defaultState,action={})=>{ //类似于vue 仓库中的mutations节点
-        let {type,payload} =action;
+export default (state=defaultState,{type,payload}={})=>{ //类似于vue 仓库中的mutations节点
         switch(type){
                 case actionTypes.INIT:
                         return Object.assign({},state,{...payload,isInit:true});
+                case actionTypes.UPDATE:
+                        let {curId} = state;
+                        return Object.assign({},state,{product:[...state.product,payload.data],curId:payload.state ? curId : curId+1});
                 default: return state;
         }
 }

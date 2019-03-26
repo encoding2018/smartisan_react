@@ -1,0 +1,113 @@
+        .mask-layer
+                position fixed
+                z-index 2
+                width 100%
+                height calc(100% - 1rem)
+                background rgba(0, 0, 0, 0.5)
+                top 0
+        .maskHide
+                display none
+        .maskShow
+                display block
+        .changeTypeMenu
+                background #fff
+                border-bottom  0.01rem solid rgba(200,200,200,0.1)
+                position fixed
+                transition all 0.5s
+                width 100%
+                z-index 3
+        .typeMenuHide
+                bottom -100%
+        .typeMenuShow
+                bottom 1rem
+        .top
+                        background linear-gradient(#fefefe, #f6f6f6)
+                        padding-top 30%
+                        position relative
+                        z-index 2
+                        flex-shrink 0
+                        box-shadow 0 0.05rem 0.13rem rgba(0, 0, 0, .12)
+
+                        .img-box
+                                position absolute
+                                bottom 0.3rem
+                                left 0.3rem
+                                width 30%
+                                background-color #fff
+                                border-radius 0.15rem
+                                border 0.01rem solid rgba(100, 100, 100, 0.2)
+                                div
+                                        padding-top 100%
+                                        img
+                                                position absolute
+                                                top 50%
+                                                left 50%
+                                                width 95%
+                                                transform translateX(-50%) translateY(-50%)
+                        .msg-box
+                                position absolute
+                                top 50%
+                                left 40%
+                                width 55%
+                                transform translateY(-50%)
+                                &>*
+                                        margin-bottom 0.15rem
+                                .name
+                                        font-weight 700
+                                        font-size 0.32rem
+                                        text-overflow ellipsis
+                                        overflow hidden
+                                        white-space nowrap
+                                .title
+                                        font-size 0.26rem
+                                        color #7f7f7f
+                                .price
+                                        font-weight 700
+                                        color #d44d44
+                                        font-size 0.3rem
+
+                .typeMenuBox
+                        height 4.5rem
+                        overflow hidden
+                        touch-action pan-y
+
+                        .typeBox
+                                padding 0.2rem 0.3rem 0 0.3rem
+                                font-size 0
+                                background #fff
+
+                                div
+                                        display inline-block
+                                        padding 0.2rem 0.3rem
+                                        font-size 0.26rem
+                                        color rgb(102, 102, 102)
+                                        border-radius 0.1rem
+                                        border 0.01rem solid rgba(100, 100, 100, 0.1)
+                                        margin 0 0.1rem 0.1rem
+
+                                .active
+                                        font-weight 700
+                                        border 0.01rem solid rgb(106, 143, 230)
+
+                        .countBtnBox
+                                padding 0.2rem
+                                display flex
+                                padding-left 0.3rem
+                                *
+                                        width 0.6rem
+                                        height 0.6rem
+                                        text-align center
+                                        line-height 0.6rem
+                                        color rgb(102,102,102)
+                                        font-weight 700
+                                        font-size 0.3rem
+                                        background-repeat no-repeat
+                                        background-position center
+                                        background-size 100%
+                                        margin-right  0.2rem
+                                        border 0
+                                        outline none
+                                div:first-child
+                                        background-image  url("./img/icon-reduce.png")
+                                div:last-child
+                                        background-image  url("./img/icon-add.png")

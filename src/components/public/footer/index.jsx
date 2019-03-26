@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './index.module.styl';
-import {NavLink} from 'react-router-dom'
+import {NavLink,withRouter} from 'react-router-dom'
+import {connect} from 'react-redux';
 class Footer extends React.Component{
         constructor(){
                 super();
@@ -16,20 +17,27 @@ class Footer extends React.Component{
         render(){
                 return (
                         <>
-                                <ul className={style.menu}>
-                                        {this.state.MenuData.map((item,i)=>(
-                                                <li key={i} className={style.btn}>
-                                                        <NavLink to={item.url} exact activeClassName={ style.active }>
-                                                                <img className={style[`img${i+1}`]} alt=""/>
-                                                                <img className={style[`activeImg${i+1}`]} alt=""/>
-                                                                <span>{item.name}</span>
-                                                        </NavLink>
-                                                </li>
-                                        ))}
-                                </ul>
+                                {this.props.template.footerShow&&
+                                        <ul className={style.menu}>
+                                                {this.state.MenuData.map((item,i)=> (
+                                                              <li key={i} className={style.btn}>
+                                                                      <NavLink to={item.url} activeClassName={ style.active } exact>
+                                                                              <img className={style[`img${i+1}`]} alt=""/>
+                                                                              <img className={style[`activeImg${i+1}`]} alt=""/>
+                                                                              <span>{item.name}</span>
+                                                                      </NavLink>
+                                                              </li>
+                                                      ))}
+                                        </ul>
+                                }
                         </>
                 )
         }
 }
 
-export default Footer;
+function mapStateToProps({template}){
+        return{
+                template
+        }
+}
+export default connect(mapStateToProps,null)(withRouter(Footer));

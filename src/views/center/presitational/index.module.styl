@@ -1,0 +1,99 @@
+.IScrollContent
+        width 100%
+        height 100%
+        touch-action pan-y
+
+        .subContent
+                padding 0.3rem
+
+                .top-placeholder
+                        height 0.3rem
+
+                .userState
+                        margin 0 0 0.3rem
+                        width 100%
+                        border-radius 0.2rem
+                        box-shadow 0 1px 2px rgba(0, 0, 0, .1), 0 18px 20px -10px rgba(0, 0, 0, .03), 0 18px 20px -10px rgba(0, 0, 0, .03), 0 10px 20px -10px rgba(0, 0, 0, .03)
+                        background #fff
+
+                        .top > a
+                                display flex
+                                align-items center
+                                padding 0.3rem
+                                border-bottom 0.01rem solid rgba(100, 100, 100, 0.2)
+
+                                div:first-child
+                                        width 1.2rem
+                                        height 1.2rem
+                                        flex-shrink 0
+                                        border-radius 50%
+                                        overflow hidden
+                                        margin-right 0.2rem
+                                        content url("./img/icon_user_avatar.png")
+
+                                div:nth-child(2)
+                                        flex-grow 1
+                                        font-size 0.35rem
+                                        font-weight 500
+                                        color #333333
+
+                                div:last-child
+                                        width 0.15rem
+                                        flex-shrink 0
+                                        height 0.5rem
+                                        background-size 100%
+                                        background-position center
+                                        background-repeat no-repeat
+                                        background-image url("./img/next_black.png");
+
+                        .bottom
+                                display flex
+
+                                div
+                                        flex-grow 1
+                                        border-right 0.01rem solid rgba(100, 100, 100, 0.1)
+
+                                        a
+                                                padding 0.3rem
+                                                display flex
+                                                flex-direction column
+                                                align-items center
+
+                                                img
+                                                        width 0.4rem
+                                                        height 0.4rem
+                                                        margin-bottom 0.2rem
+
+                                                span
+                                                        color rgb(102, 102, 102)
+                                                        font-size 0.22rem
+
+                                div:last-child
+                                        border-right 0
+
+                .barBox
+                        margin 0.3rem 0
+                        background #fff
+                        border-radius 0.2rem
+                        box-shadow 0 1px 2px rgba(0, 0, 0, .1), 0 18px 20px -10px rgba(0, 0, 0, .03), 0 18px 20px -10px rgba(0, 0, 0, .03), 0 10px 20px -10px rgba(0, 0, 0, .03)
+
+                        .bar
+                                border-bottom 0.01rem solid rgba(100, 100, 100, 0.1)
+                                padding 0.4rem 0.3rem
+
+                                a
+                                        display flex
+                                        align-items center
+
+                                        div:first-child
+                                                flex-grow 1
+                                                font-size 0.35rem
+                                                color #333
+
+                                        div:last-child
+                                                width 0.15rem
+
+                                                img
+                                                        width 100%
+                .barBox:last-child
+                        margin 0

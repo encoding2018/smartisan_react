@@ -8,7 +8,7 @@ export default (props)=> (
                                                 <div className={style.left}>
                                                         {props.data.filter(item=>item.location===1).map((item,i)=>(
                                                                 <div key={i}>
-                                                                        <Link to={`/product/${item.id}`}>
+                                                                        <Link to={`/product/${item.pid}`}>
                                                                                 <img src={item.avatar} alt=""/>
                                                                         </Link>
                                                                 </div>
@@ -17,7 +17,7 @@ export default (props)=> (
                                                 <div className={style.right}>
                                                         {props.data.filter(item=>item.location===2).map((item,i)=>(
                                                                 <div key={i}>
-                                                                        <Link to={`/product/${item.id}`}>
+                                                                        <Link to={`/product/${item.pid}`}>
                                                                                 <img src={item.avatar} alt=""/>
                                                                         </Link>
                                                                 </div>

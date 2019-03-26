@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import style from './index.module.styl'
-
 class Header extends Component{
         constructor(props){
                 super(props);
@@ -17,7 +16,7 @@ class Header extends Component{
         componentWillReceiveProps(nextProps){
                 let {Back,Logo,Menu,Text,Edit,Search,TextContent} = nextProps.navState;
                 this.setState({
-                        back: Back ? (<div className={style["back-btn"]}><div>返回</div></div>) : null,
+                        back: Back ? (<div className={style["back-btn"]}><div onClick={this.Back}>返回</div></div>) : null,
                         logo:Logo ? (<div className={style.logo}></div>) : null,
                         menu:Menu ? (<div  className={style["menu-btn"]}></div>) : null,
                         text:Text ? (<div className={style.text}>{TextContent}</div>) : null,
@@ -44,6 +43,9 @@ class Header extends Component{
                                 </ul>
                         </>
                 );
+        }
+        Back(){
+                window.history.go(-1)
         }
 }
 export default Header;

@@ -22,7 +22,7 @@ export default (url, option = {}) => {
                         if(message) alert(message);
                         switch(status){
                                 case 200: return data;
-                                case 401:  // todo
+                                case 401: // todo
                                 default: return alwaysPendingPromise;
                         }
                 })
